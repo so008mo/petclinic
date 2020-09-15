@@ -4,6 +4,7 @@ pipeline {
    stages {     
     stage('Build') {
         steps {
+	   sh 'rm -rf petclinic'
            sh 'git clone https://github.com/so008mo/petclinic.git'
 	   sh 'cd petclinic'
 	   sh 'mvn compile -Dimage=spring/petclinic:spring-k8s-1 \
