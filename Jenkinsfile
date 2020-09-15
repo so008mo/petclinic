@@ -1,14 +1,15 @@
 #!groovy
 pipeline {
-    agent any
+    agent none
    stages {     
-    stage('Build') {
-        steps {
-	   sh 'rm -rf petclinic'
-           sh 'git clone https://github.com/so008mo/petclinic.git'
-	   sh 'cd petclinic'
-	   sh './mvnw package'
-	   sh 'java -jar target/*.jar'
+    stage('Maven Install') {
+      agent {         
+       docker {          
+         image 'maven:3.5.0'         
+     }       
+  }       
+  steps {
+       sh 'mvn clean install'
        }
      }
    }
