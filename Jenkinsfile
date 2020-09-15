@@ -9,6 +9,7 @@ pipeline {
      }       
   }       
       steps {
+       sh 'rm -rf petclinic'
        sh 'git clone https://github.com/so008mo/petclinic.git'
        sh 'cd petclinic'
        sh './mvnw spring-boot:run'
